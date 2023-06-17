@@ -3,5 +3,5 @@
 
 The project allows to compare the data of two files.
 
-### [Demonstation of comparison of two .json files] (https://asciinema.org/a/H8gUNyE5sTsOYDYist9NLgiYb)
+### [Demonstation of comparison of two .json files](https://asciinema.org/a/H8gUNyE5sTsOYDYist9NLgiYb)
 
