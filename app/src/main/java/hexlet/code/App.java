@@ -31,7 +31,7 @@ public class App implements Callable<Integer> {
 //    private boolean version;
 
     @Override
-    public Integer call() throws IOException {
+    public Integer call() throws Exception {
         String diff = Differ.generate(filepath1, filepath2);
         System.out.println(diff);
         return 0;

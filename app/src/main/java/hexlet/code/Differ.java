@@ -11,7 +11,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Differ {
-    public static String generate(String filePath1, String filePath2) throws IOException {
+    public static String generate(String filePath1, String filePath2) throws Exception {
 
         Path normalizedFilePath1 = Paths.get(filePath1).toAbsolutePath().normalize();
         Path normalizedFilePath2 = Paths.get(filePath2).toAbsolutePath().normalize();
@@ -27,7 +27,6 @@ public class Differ {
         Set<String> keys = new TreeSet<>();
         keys.addAll(data1.keySet());
         keys.addAll(data2.keySet());
-
 
         Map<String, Object> result = new LinkedHashMap<>();
 
@@ -47,7 +46,7 @@ public class Differ {
 
         String strResult = result.entrySet().stream()
                 .map(item -> item.getKey() + ": " + item.getValue())
-                .collect( Collectors.joining("\n"));
+                .collect(Collectors.joining("\n"));
 
         return "{\n" + strResult + "\n}";
 
