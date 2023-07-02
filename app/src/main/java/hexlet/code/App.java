@@ -6,7 +6,7 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 //import java.io.File;
-//import java.io.IOException;
+import java.io.IOException;
 //import java.math.BigInteger;
 //import java.nio.file.Files;
 //import java.security.MessageDigest;
@@ -32,8 +32,8 @@ public class App implements Callable<Integer> {
 //    private boolean version;
 
     @Override
-    public Integer call() throws Exception {
-        String diff = Differ.generate(filepath1, filepath2);
+    public Integer call() throws IOException {
+        String diff = Differ.generate(filepath1, filepath2, format);
         System.out.println(diff);
         return 0;
     }

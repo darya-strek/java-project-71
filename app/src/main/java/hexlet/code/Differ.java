@@ -3,7 +3,7 @@ package hexlet.code;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-//import java.io.IOException;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,14 +16,13 @@ import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 
 public class Differ {
-    public static String generate(String filePath1, String filePath2) throws Exception {
+    public static String generate(String filePath1, String filePath2, String format) throws IOException {
 
-        Path normalizedFilePath1 = Paths.get(filePath1).toAbsolutePath().normalize();
-        Path normalizedFilePath2 = Paths.get(filePath2).toAbsolutePath().normalize();
+        Path normalizedFilePath1 = normalizedPath(filePath1);
+        Path normalizedFilePath2 = normalizedPath(filePath2);
 
         String file1 = Files.readString(normalizedFilePath1);
         String file2 = Files.readString(normalizedFilePath2);
-
 
         ObjectMapper mapper = new ObjectMapper();
         Map<String, Object> data1 = mapper.readValue(file1, new TypeReference<TreeMap<String, Object>>() { });
@@ -55,5 +54,13 @@ public class Differ {
 
         return "{\n" + strResult + "\n}";
 
+    }
+
+    public static String generate(String filePath1, String filePath2) throws IOException {
+        return generate(filePath1, filePath2, "stylish");
+    }
+
+    public static Path normalizedPath(String filePath) {
+        return Paths.get(filePath).toAbsolutePath().normalize();
     }
 }
