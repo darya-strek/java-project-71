@@ -5,7 +5,7 @@ run:
 	@./gradlew run
 
 report:
-    @./gradlew jacocoTestReport
+    ./gradlew jacocoTestReport
 
 build:
 	@./gradlew clean build
