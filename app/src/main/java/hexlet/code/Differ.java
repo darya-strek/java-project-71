@@ -18,15 +18,7 @@ import java.util.stream.Collectors;
 public class Differ {
     public static String generate(String filePath1, String filePath2, String format) throws IOException {
 
-        Path normalizedFilePath1 = normalizedPath(filePath1);
-        Path normalizedFilePath2 = normalizedPath(filePath2);
 
-        String file1 = Files.readString(normalizedFilePath1);
-        String file2 = Files.readString(normalizedFilePath2);
-
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> data1 = mapper.readValue(file1, new TypeReference<TreeMap<String, Object>>() { });
-        Map<String, Object> data2 = mapper.readValue(file2, new TypeReference<TreeMap<String, Object>>() { });
 
         Set<String> keys = new TreeSet<>();
         keys.addAll(data1.keySet());
@@ -60,7 +52,5 @@ public class Differ {
         return generate(filePath1, filePath2, "stylish");
     }
 
-    public static Path normalizedPath(String filePath) {
-        return Paths.get(filePath).toAbsolutePath().normalize();
-    }
+
 }
