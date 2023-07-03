@@ -1,5 +1,7 @@
 .gradle
 
+out/
+
 build
 
 **/logs/
