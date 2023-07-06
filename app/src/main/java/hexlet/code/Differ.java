@@ -6,7 +6,6 @@ import java.util.Objects;
 import java.util.TreeSet;
 import java.util.Set;
 import java.util.LinkedHashMap;
-import java.util.stream.Collectors;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2, String format) throws IOException {
@@ -18,28 +17,28 @@ public class Differ {
         keys.addAll(data1.keySet());
         keys.addAll(data2.keySet());
 
-        Map<String, Object> result = new LinkedHashMap<>();
+        Map<String, Map<String, Object>> diffMap = new LinkedHashMap<>();
 
         for (String key : keys) {
-
+            Map<String, Object> valueMap = new LinkedHashMap<>();
             if (data1.containsKey(key) && !data2.containsKey(key)) {
-                result.put("  - " + key, data1.get(key));
+                valueMap.put("status", "deleted");
+                valueMap.put("value", data1.get(key));
             } else if (!data1.containsKey(key) && data2.containsKey(key)) {
-                result.put("  + " + key, data2.get(key));
+                valueMap.put("status", "added");
+                valueMap.put("value", data2.get(key));
             } else if (!Objects.equals(data1.get(key), data2.get(key))) {
-                result.put("  - " + key, data1.get(key));
-                result.put("  + " + key, data2.get(key));
+                valueMap.put("status", "changed");
+                valueMap.put("oldValue", data1.get(key));
+                valueMap.put("newValue", data2.get(key));
             } else {
-                result.put("    " + key, data1.get(key));
+                valueMap.put("status", "unchanged");
+                valueMap.put("value", data1.get(key));
             }
+            diffMap.put(key, valueMap);
         }
 
-        String strResult = result.entrySet().stream()
-                .map(item -> item.getKey() + ": " + item.getValue())
-                .collect(Collectors.joining("\n"));
-
-        return "{\n" + strResult + "\n}";
-
+        return Formatter.format(diffMap, format);
     }
 
     public static String generate(String filePath1, String filePath2) throws IOException {

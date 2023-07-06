@@ -19,21 +19,13 @@ public class Parser {
 
         String extension = getExtension(filePath);
 
-        ObjectMapper mapper;
+        ObjectMapper mapper = switch (extension) {
+            case "json" -> new ObjectMapper();
+            case "yaml" -> new YAMLMapper();
+            case "yml" -> new YAMLMapper();
+            default -> throw new RuntimeException("Unexpected value: " + extension);
+        };
 
-        switch (extension) {
-            case "json":
-                mapper = new ObjectMapper();
-                break;
-            case "yaml":
-                mapper = new YAMLMapper();
-                break;
-            case "yml":
-                mapper = new YAMLMapper();
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + extension);
-        }
         return mapper.readValue(file, new TypeReference<TreeMap<String, Object>>() { });
     }
 
