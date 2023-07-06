@@ -38,16 +38,33 @@ public class AppTest {
 
     @Test
     void diffTestJson() throws IOException {
-        String file1 = getAbsolutePath("file1.json");
-        String file2 = getAbsolutePath("file2.json");
-        assertThat(Differ.generate(file1, file2)).isEqualTo(result);
+        String json1 = getAbsolutePath("file1.json");
+        String json2 = getAbsolutePath("file2.json");
+        assertThat(Differ.generate(json1, json2)).isEqualTo(result);
+    }
+
+    @Test
+    void diffTestYml() throws IOException {
+        String yml1 = getAbsolutePath("file1.yml");
+        String yml2 = getAbsolutePath("file2.yml");
+        assertThat(Differ.generate(yml1, yml2)).isEqualTo(result);
     }
 
     @Test
     void diffTestYaml() throws IOException {
-        String file1 = getAbsolutePath("file1.yml");
-        String file2 = getAbsolutePath("file2.yml");
-        assertThat(Differ.generate(file1, file2)).isEqualTo(result);
+        String yaml1 = getAbsolutePath("file1.yaml");
+        String yaml2 = getAbsolutePath("file2.yaml");
+        assertThat(Differ.generate(yaml1, yaml2)).isEqualTo(result);
+    }
+
+    @Test
+    void diffTestExt() throws IOException {
+        String json1 = getAbsolutePath("file1.json");
+        String json2 = getAbsolutePath("file2.json");
+        String yml1 = getAbsolutePath("file1.yaml");
+        String yml2 = getAbsolutePath("file2.yaml");
+        assertThat(Differ.generate(json1, yml2)).isEqualTo(result);
+        assertThat(Differ.generate(yml1, json2)).isEqualTo(result);
     }
 
 }
