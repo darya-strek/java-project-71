@@ -61,8 +61,8 @@ public class AppTest {
     void diffTestExt() throws IOException {
         String json1 = getAbsolutePath("file1.json");
         String json2 = getAbsolutePath("file2.json");
-        String yml1 = getAbsolutePath("file1.yaml");
-        String yml2 = getAbsolutePath("file2.yaml");
+        String yml1 = getAbsolutePath("file1.yml");
+        String yml2 = getAbsolutePath("file2.yml");
         assertThat(Differ.generate(json1, yml2)).isEqualTo(result);
         assertThat(Differ.generate(yml1, json2)).isEqualTo(result);
     }

@@ -1,0 +1,7 @@
+name: "Alex"
+second name: "Smith"
+id: 1
+age: 30
+marriage: true
+children: false
+password: [3, 5, 7]
