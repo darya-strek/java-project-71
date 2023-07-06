@@ -8,5 +8,9 @@
 This project is a program: the difference calculator shows the difference between two files. 
 The utility supports different input formats: yaml and json, and the report can be presented in three formats: plain text, stylish and json.
 
-### [Demonstation of comparison of two .json files](https://asciinema.org/a/H8gUNyE5sTsOYDYist9NLgiYb)
+### Demonstation of comparison of two .json files
+[![asciinema badge](https://asciinema.org/a/8LJRrfRycVl9WccvlVuEPXYKx.svg)](https://asciinema.org/a/8LJRrfRycVl9WccvlVuEPXYKx)
+
+### Demonstation of comparison of two .yml files
+[![asciinema badge](https://asciinema.org/a/uvP7tDslIOp7SP8tfe4xE5Xx8.svg)](https://asciinema.org/a/uvP7tDslIOp7SP8tfe4xE5Xx8)
 

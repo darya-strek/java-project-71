@@ -2,6 +2,7 @@ package hexlet.code;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,14 +17,24 @@ public class Parser {
         Path normalizedFilePath = Paths.get(filePath).toAbsolutePath().normalize();
         String file = Files.readString(normalizedFilePath);
 
+        String extension = getExtension(filePath);
 
+        ObjectMapper mapper;
 
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> data1 = mapper.readValue(file1, new TypeReference<TreeMap<String, Object>>() { });
-        Map<String, Object> data2 = mapper.readValue(file2, new TypeReference<TreeMap<String, Object>>() { });
+        switch (extension) {
+            case "json":
+                mapper = new ObjectMapper();
+                break;
+            case "yaml", "yml":
+                mapper = new YAMLMapper();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + extension);
+        }
+        return mapper.readValue(file, new TypeReference<TreeMap<String, Object>>() { });
     }
 
     public static String getExtension(String filePath) {
-        line.substring(line.indexOf('\"') + 1, line.lastIndexOf('\"')))
+        return filePath.substring(filePath.indexOf('.') + 1);
     }
 }
