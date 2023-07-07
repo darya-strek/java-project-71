@@ -6,7 +6,7 @@
 
 ### What is it?
 This project is a program: the difference calculator shows the difference between two files. 
-The utility supports different input formats: yaml and json, and the report can be presented in three formats: plain text, stylish and json.
+The utility supports different input formats: yaml, yml and json, and the report can be presented in three formats: stylish, plain and json.
 
 ### Demonstation of two .json files
 [![asciinema badge](https://asciinema.org/a/WOGn3IJ8JkOFEy2vE54NUYI0k.svg)](https://asciinema.org/a/WOGn3IJ8JkOFEy2vE54NUYI0k)
