@@ -8,9 +8,18 @@
 This project is a program: the difference calculator shows the difference between two files. 
 The utility supports different input formats: yaml and json, and the report can be presented in three formats: plain text, stylish and json.
 
-### Demonstation of comparison of two .json files
-[![asciinema badge](https://asciinema.org/a/8LJRrfRycVl9WccvlVuEPXYKx.svg)](https://asciinema.org/a/8LJRrfRycVl9WccvlVuEPXYKx)
+### Demonstation of two .json files
+[![asciinema badge](https://asciinema.org/a/WOGn3IJ8JkOFEy2vE54NUYI0k.svg)](https://asciinema.org/a/WOGn3IJ8JkOFEy2vE54NUYI0k)
 
-### Demonstation of comparison of two .yml files
-[![asciinema badge](https://asciinema.org/a/uvP7tDslIOp7SP8tfe4xE5Xx8.svg)](https://asciinema.org/a/uvP7tDslIOp7SP8tfe4xE5Xx8)
+### Demonstation of two .yml files
+[![asciinema badge](https://asciinema.org/a/2JDxjBODFVWs0Gv7TXv11Ufir.svg)](https://asciinema.org/a/2JDxjBODFVWs0Gv7TXv11Ufir)
+
+### Demonstation of two files with different extension
+[![asciinema badge](https://asciinema.org/a/2VemNkDDlaRb2FRsJ6MUzNh2J.svg)](https://asciinema.org/a/2VemNkDDlaRb2FRsJ6MUzNh2J)
+
+### Demonstation of stylish, plain, json formats
+[![asciinema badge](https://asciinema.org/a/i7trnNCEebTSHul4mS3ddFakK.svg)](https://asciinema.org/a/i7trnNCEebTSHul4mS3ddFakK)
+
+### Demonstation of Help menu
+[![asciinema badge](https://asciinema.org/a/wU6gQ3ZkgKvdw8RpLao9ux17b.svg)](https://asciinema.org/a/wU6gQ3ZkgKvdw8RpLao9ux17b)
 

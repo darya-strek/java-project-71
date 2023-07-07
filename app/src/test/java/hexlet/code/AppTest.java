@@ -115,7 +115,10 @@ public class AppTest {
 
         String json1 = getAbsolutePath("file1.json");
         String json2 = getAbsolutePath("file2.json");
+        String yml1 = getAbsolutePath("file1.yml");
+        String yml2 = getAbsolutePath("file2.yml");
         assertThat(Differ.generate(json1, json2, "plain")).isEqualTo(resultPlain);
+        assertThat(Differ.generate(yml1, yml2, "plain")).isEqualTo(resultPlain);
     }
 
     @Test
@@ -195,8 +198,11 @@ public class AppTest {
                   }
                 }""";
 
+        String json1 = getAbsolutePath("file1.json");
+        String json2 = getAbsolutePath("file2.json");
         String yml1 = getAbsolutePath("file1.yml");
         String yml2 = getAbsolutePath("file2.yml");
+        assertThat(Differ.generate(json1, json2, "json")).isEqualTo(resultJson);
         assertThat(Differ.generate(yml1, yml2, "json")).isEqualTo(resultJson);
     }
 
