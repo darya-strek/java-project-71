@@ -23,7 +23,7 @@ public class App implements Callable<Integer> {
 
     @Option(names = {"-f", "--format"}, defaultValue = "stylish", paramLabel = "format",
             description = "output format [default: stylish]")
-    String format = "stylish";
+    String format;
 
 //    @Option(names = {"-h", "--help"}, description = "Show this help message and exit.")
 //    private boolean helpRequest;

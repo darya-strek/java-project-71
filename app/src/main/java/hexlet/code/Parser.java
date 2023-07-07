@@ -21,8 +21,7 @@ public class Parser {
 
         ObjectMapper mapper = switch (extension) {
             case "json" -> new ObjectMapper();
-            case "yaml" -> new YAMLMapper();
-            case "yml" -> new YAMLMapper();
+            case "yaml", "yml" -> new YAMLMapper();
             default -> throw new RuntimeException("Unexpected value: " + extension);
         };
 
