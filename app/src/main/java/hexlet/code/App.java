@@ -5,11 +5,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-//import java.io.File;
 import java.io.IOException;
-//import java.math.BigInteger;
-//import java.nio.file.Files;
-//import java.security.MessageDigest;
 import java.util.concurrent.Callable;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
@@ -24,12 +20,6 @@ public class App implements Callable<Integer> {
     @Option(names = {"-f", "--format"}, defaultValue = "stylish", paramLabel = "format",
             description = "output format [default: stylish]")
     String format;
-
-//    @Option(names = {"-h", "--help"}, description = "Show this help message and exit.")
-//    private boolean helpRequest;
-
-//    @Option(names = {"-V", "--version"}, description = "Print version information and exit.")
-//    private boolean version;
 
     @Override
     public Integer call() throws IOException {
