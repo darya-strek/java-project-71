@@ -37,12 +37,10 @@ public class Differ {
             }
             diffMap.put(key, valueMap);
         }
-
         return Formatter.format(diffMap, format);
     }
 
     public static String generate(String filePath1, String filePath2) throws IOException {
         return generate(filePath1, filePath2, "stylish");
     }
-
 }

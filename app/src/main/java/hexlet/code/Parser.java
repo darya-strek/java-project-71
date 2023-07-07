@@ -24,7 +24,6 @@ public class Parser {
             case "yaml", "yml" -> new YAMLMapper();
             default -> throw new RuntimeException("Unexpected value: " + extension);
         };
-
         return mapper.readValue(file, new TypeReference<TreeMap<String, Object>>() { });
     }
 
