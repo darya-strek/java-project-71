@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AppTest {
-
     String result;
 
     public static String getAbsolutePath(String filePath) {
@@ -48,28 +47,28 @@ public class AppTest {
     }
 
     @Test
-    void diffTestJsonExt() throws IOException {
+    void diffTestJsonExtension() throws IOException {
         String json1 = getAbsolutePath("file1.json");
         String json2 = getAbsolutePath("file2.json");
         assertThat(Differ.generate(json1, json2)).isEqualTo(result);
     }
 
     @Test
-    void diffTestYmlExt() throws IOException {
+    void diffTestYmlExtension() throws IOException {
         String yml1 = getAbsolutePath("file1.yml");
         String yml2 = getAbsolutePath("file2.yml");
         assertThat(Differ.generate(yml1, yml2)).isEqualTo(result);
     }
 
     @Test
-    void diffTestYamlExt() throws IOException {
+    void diffTestYamlExtension() throws IOException {
         String yaml1 = getAbsolutePath("file1.yaml");
         String yaml2 = getAbsolutePath("file2.yaml");
         assertThat(Differ.generate(yaml1, yaml2)).isEqualTo(result);
     }
 
     @Test
-    void diffTestDifferentExt() throws IOException {
+    void diffTestDifferentExtension() throws IOException {
         String json1 = getAbsolutePath("file1.json");
         String json2 = getAbsolutePath("file2.json");
         String yml1 = getAbsolutePath("file1.yml");
@@ -79,14 +78,21 @@ public class AppTest {
     }
 
     @Test
-    void diffTestOtherExt() throws IOException {
+    void diffTestWrongExtension() throws IOException {
         String json1 = getAbsolutePath("file1.json");
-        String otherExtension = getAbsolutePath("fileOtherExtension.txt");
+        String wrongExtension = getAbsolutePath("fileOtherExtension.txt");
 
         Throwable thrown = assertThrows(RuntimeException.class, () -> {
-            Differ.generate(json1, otherExtension);
+            Differ.generate(json1, wrongExtension);
         });
         assertThat(thrown.getMessage()).isNotNull();
+    }
+
+    @Test
+    void diffTestPath() throws IOException {
+        String json1 = "src/test/resources/file1.json";
+        String json2 = "src/test/resources/file2.json";
+        assertThat(Differ.generate(json1, json2)).isEqualTo(result);
     }
 
     @Test

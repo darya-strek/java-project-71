@@ -9,16 +9,15 @@ public class Plain {
         StringBuilder result = new StringBuilder();
 
         for (String key : diffMap.keySet()) {
-            Map<String, Object> map = diffMap.get(key);
-
-            if (map.get("status").equals("added")) {
+            Map<String, Object> valueMap = diffMap.get(key);
+            if (valueMap.get("status").equals("added")) {
                 result.append(String.format("Property '%s' was added with value: %s",
-                        key, getValue(map.get("value")))).append("\n");
-            } else if (map.get("status").equals("deleted")) {
+                        key, getValue(valueMap.get("value")))).append("\n");
+            } else if (valueMap.get("status").equals("deleted")) {
                 result.append(String.format("Property '%s' was removed", key)).append("\n");
-            } else if (map.get("status").equals("changed")) {
+            } else if (valueMap.get("status").equals("changed")) {
                 result.append(String.format("Property '%s' was updated. From %s to %s",
-                        key, getValue(map.get("oldValue")), getValue(map.get("newValue")))).append("\n");
+                        key, getValue(valueMap.get("oldValue")), getValue(valueMap.get("newValue")))).append("\n");
             }
         }
         return result.toString().trim();

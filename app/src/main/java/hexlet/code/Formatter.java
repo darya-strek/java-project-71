@@ -8,7 +8,7 @@ import hexlet.code.formatters.Stylish;
 import hexlet.code.formatters.Plain;
 
 public class Formatter {
-    public static String format(Map<String, Map<String, Object>> diffMap, String format)
+    public static String getFormat(Map<String, Map<String, Object>> diffMap, String format)
             throws JsonProcessingException {
 
         return switch (format) {

@@ -37,7 +37,7 @@ public class Differ {
             }
             diffMap.put(key, valueMap);
         }
-        return Formatter.format(diffMap, format);
+        return Formatter.getFormat(diffMap, format);
     }
 
     public static String generate(String filePath1, String filePath2) throws IOException {
