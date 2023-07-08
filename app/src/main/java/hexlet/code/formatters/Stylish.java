@@ -3,7 +3,9 @@ package hexlet.code.formatters;
 import java.util.Map;
 
 public class Stylish {
+
     static final int WIDTH_OF_INDENT = 4;
+
     public static String format(Map<String, Map<String, Object>> diffMap) {
         StringBuilder result = new StringBuilder();
         result.append("{\n");
