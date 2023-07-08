@@ -10,14 +10,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AppTest {
-    String result;
+    private String result;
 
     public static String getAbsolutePath(String filePath) {
         return Paths.get("src", "test", "resources", filePath).toAbsolutePath().normalize().toString();
     }
 
     @BeforeEach
-    public void beforeEach() {
+    public final void beforeEach() {
         result = """
                 {
                     chars1: [a, b, c]
