@@ -1,46 +1,39 @@
 package hexlet.code;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
-import java.util.Objects;
-import java.util.TreeSet;
-import java.util.Set;
-import java.util.LinkedHashMap;
 
 public class Differ {
     public static String generate(String filePath1, String filePath2, String format) throws IOException {
 
-        Map<String, Object> data1 = Parser.parse(filePath1);
-        Map<String, Object> data2 = Parser.parse(filePath2);
+        String dataString1 = getData(filePath1);
+        String dataString2 = getData(filePath2);
 
-        Set<String> keys = new TreeSet<>();
-        keys.addAll(data1.keySet());
-        keys.addAll(data2.keySet());
+        String dataFormat1 = getDataFormat(filePath1);
+        String dataFormat2 = getDataFormat(filePath2);
 
-        Map<String, Map<String, Object>> diffMap = new LinkedHashMap<>();
+        Map<String, Object> dataMap1 = Parser.parse(dataString1, dataFormat1);
+        Map<String, Object> dataMap2 = Parser.parse(dataString2, dataFormat2);
 
-        for (String key : keys) {
-            Map<String, Object> valueMap = new LinkedHashMap<>();
-            if (data1.containsKey(key) && !data2.containsKey(key)) {
-                valueMap.put("status", "deleted");
-                valueMap.put("value", data1.get(key));
-            } else if (!data1.containsKey(key) && data2.containsKey(key)) {
-                valueMap.put("status", "added");
-                valueMap.put("value", data2.get(key));
-            } else if (!Objects.equals(data1.get(key), data2.get(key))) {
-                valueMap.put("status", "changed");
-                valueMap.put("oldValue", data1.get(key));
-                valueMap.put("newValue", data2.get(key));
-            } else {
-                valueMap.put("status", "unchanged");
-                valueMap.put("value", data1.get(key));
-            }
-            diffMap.put(key, valueMap);
-        }
+        Map<String, Map<String, Object>> diffMap = DifferCalc.generate(dataMap1, dataMap2);
+
         return Formatter.getFormat(diffMap, format);
     }
 
     public static String generate(String filePath1, String filePath2) throws IOException {
         return generate(filePath1, filePath2, "stylish");
+    }
+
+    public static String getData(String filePath) throws IOException {
+        Path normalizedFilePath = Paths.get(filePath).toAbsolutePath().normalize();
+        return Files.readString(normalizedFilePath);
+    }
+
+    public static String getDataFormat(String filePath) {
+        int index = filePath.lastIndexOf('.');
+        return index > 0 ? filePath.substring(index + 1) : "";
     }
 }

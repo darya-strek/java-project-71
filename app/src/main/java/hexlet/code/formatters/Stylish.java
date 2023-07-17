@@ -12,18 +12,19 @@ public class Stylish {
 
         for (String key : diffMap.keySet()) {
             Map<String, Object> valueMap = diffMap.get(key);
-            if (valueMap.get("status").equals("deleted")) {
+            Object status = valueMap.get("status");
+            if (status.equals("deleted")) {
                 result.append("  - ").append(key).append(": ").append(valueMap.get("value")).append("\n");
-            } else if (valueMap.get("status").equals("added")) {
+            } else if (status.equals("added")) {
                 result.append("  + ").append(key).append(": ").append(valueMap.get("value")).append("\n");
-            } else if (valueMap.get("status").equals("changed")) {
+            } else if (status.equals("changed")) {
                 result.append("  - ").append(key).append(": ").append(valueMap.get("oldValue")).append("\n");
                 result.append("  + ").append(key).append(": ").append(valueMap.get("newValue")).append("\n");
-            } else if (valueMap.get("status").equals("unchanged")) {
+            } else if (status.equals("unchanged")) {
                 result.append(" ".repeat(WIDTH_OF_INDENT)).append(key).append(": ")
                         .append(valueMap.get("value")).append("\n");
             } else {
-                throw new RuntimeException();
+                throw new RuntimeException("Unknown status: " + status);
             }
         }
         result.append("}");
