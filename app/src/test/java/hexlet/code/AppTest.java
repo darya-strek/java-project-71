@@ -28,7 +28,7 @@ public class AppTest {
     public static void beforeAll() throws Exception {
         resultStylish = readFixture("result_stylish.txt");
         resultPlain = readFixture("result_plain.txt");
-        resultJson = readFixture("result_json.json");
+        resultJson = readFixture("result_json.txt");
     }
 
     @Test
@@ -121,7 +121,7 @@ public class AppTest {
     }
 
     @Test
-    void diffTestWrongFormat() throws Exception {
+    void diffTestWrongFormat() {
         String json1 = getFixturePath("file1.json").toString();
         String wrongExtension = getFixturePath("fileOtherExtension.txt").toString();
 
