@@ -2,6 +2,8 @@ package hexlet.code;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,93 +33,16 @@ public class AppTest {
         resultJson = readFixture("result_json.txt");
     }
 
-    @Test
-    void diffTestJsonFormatStylishFormatter() throws Exception {
-        String json1 = getFixturePath("file1.json").toString();
-        String json2 = getFixturePath("file2.json").toString();
-        assertThat(Differ.generate(json1, json2, "stylish")).isEqualTo(resultStylish);
-    }
+    @ParameterizedTest
+    @ValueSource(strings = {"json", "yml", "yaml"})
+    public void generateTest(String format) throws Exception {
+        String filePath1 = getFixturePath("file1." + format).toString();
+        String filePath2 = getFixturePath("file2." + format).toString();
 
-    @Test
-    void diffTestJsonFormatPlainFormatter() throws Exception {
-        String json1 = getFixturePath("file1.json").toString();
-        String json2 = getFixturePath("file2.json").toString();
-        assertThat(Differ.generate(json1, json2, "plain")).isEqualTo(resultPlain);
-    }
-
-    @Test
-    void diffTestJsonFormatJsonFormatter() throws Exception {
-        String json1 = getFixturePath("file1.json").toString();
-        String json2 = getFixturePath("file2.json").toString();
-        assertThat(Differ.generate(json1, json2, "json")).isEqualTo(resultJson);
-    }
-
-    @Test
-    void diffTestJsonFormatDefaultFormatter() throws Exception {
-        String json1 = getFixturePath("file1.json").toString();
-        String json2 = getFixturePath("file2.json").toString();
-        assertThat(Differ.generate(json1, json2)).isEqualTo(resultStylish);
-    }
-
-    @Test
-    void diffTestYamlFormatStylishFormatter() throws Exception {
-        String yaml1 = getFixturePath("file1.yaml").toString();
-        String yaml2 = getFixturePath("file2.yaml").toString();
-        String yml1 = getFixturePath("file1.yml").toString();
-        String yml2 = getFixturePath("file2.yml").toString();
-        assertThat(Differ.generate(yaml1, yaml2, "stylish")).isEqualTo(resultStylish);
-        assertThat(Differ.generate(yml1, yml2, "stylish")).isEqualTo(resultStylish);
-    }
-
-    @Test
-    void diffTestYamlFormatPlainFormatter() throws Exception {
-        String yaml1 = getFixturePath("file1.yaml").toString();
-        String yaml2 = getFixturePath("file2.yaml").toString();
-        String yml1 = getFixturePath("file1.yml").toString();
-        String yml2 = getFixturePath("file2.yml").toString();
-        assertThat(Differ.generate(yaml1, yaml2, "plain")).isEqualTo(resultPlain);
-        assertThat(Differ.generate(yml1, yml2, "plain")).isEqualTo(resultPlain);
-    }
-
-    @Test
-    void diffTestYamlFormatJsonFormatter() throws Exception {
-        String yaml1 = getFixturePath("file1.yaml").toString();
-        String yaml2 = getFixturePath("file2.yaml").toString();
-        String yml1 = getFixturePath("file1.yml").toString();
-        String yml2 = getFixturePath("file2.yml").toString();
-        assertThat(Differ.generate(yaml1, yaml2, "json")).isEqualTo(resultJson);
-        assertThat(Differ.generate(yml1, yml2, "json")).isEqualTo(resultJson);
-    }
-
-    @Test
-    void diffTestYamlFormatDefaultFormatter() throws Exception {
-        String yaml1 = getFixturePath("file1.yaml").toString();
-        String yaml2 = getFixturePath("file2.yaml").toString();
-        String yml1 = getFixturePath("file1.yml").toString();
-        String yml2 = getFixturePath("file2.yml").toString();
-        assertThat(Differ.generate(yaml1, yaml2)).isEqualTo(resultStylish);
-        assertThat(Differ.generate(yml1, yml2)).isEqualTo(resultStylish);
-    }
-
-
-    @Test
-    void diffTestDifferentFormatDifferentFormatter() throws Exception {
-        String json1 = getFixturePath("file1.json").toString();
-        String json2 = getFixturePath("file2.json").toString();
-        String yml1 = getFixturePath("file1.yml").toString();
-        String yml2 = getFixturePath("file2.yml").toString();
-
-        assertThat(Differ.generate(json1, yml2, "stylish")).isEqualTo(resultStylish);
-        assertThat(Differ.generate(yml1, json2, "stylish")).isEqualTo(resultStylish);
-
-        assertThat(Differ.generate(json1, yml2, "plain")).isEqualTo(resultPlain);
-        assertThat(Differ.generate(yml1, json2, "plain")).isEqualTo(resultPlain);
-
-        assertThat(Differ.generate(json1, yml2, "json")).isEqualTo(resultJson);
-        assertThat(Differ.generate(yml1, json2, "json")).isEqualTo(resultJson);
-
-        assertThat(Differ.generate(json1, yml2)).isEqualTo(resultStylish);
-        assertThat(Differ.generate(yml1, json2)).isEqualTo(resultStylish);
+        assertThat(Differ.generate(filePath1, filePath2, "stylish")).isEqualTo(resultStylish);
+        assertThat(Differ.generate(filePath1, filePath2, "plain")).isEqualTo(resultPlain);
+        assertThat(Differ.generate(filePath1, filePath2, "json")).isEqualTo(resultJson);
+        assertThat(Differ.generate(filePath1, filePath2)).isEqualTo(resultStylish);
     }
 
     @Test
